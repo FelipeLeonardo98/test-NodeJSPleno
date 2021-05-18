@@ -1,7 +1,7 @@
 // imports
 import React from 'react';
 import './map.css';
-import './apiscript';
+import { initMap } from './apiscript';
 
 
 export default function MapGoogle() {
