@@ -1,0 +1,25 @@
+footer{
+    width: 99%;
+    height: 50px;
+    position: absolute; 
+    bottom: 0px;
+    background-color: rgba(48, 219, 48, 0.589);
+    color: #ffffff;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    font-family: 'Lato';
+    box-shadow: 0 0 1em black;
+    padding-top: 8px;
+    }
+
+a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+a:hover{
+    color:  #3c3f4b;
+
+}
