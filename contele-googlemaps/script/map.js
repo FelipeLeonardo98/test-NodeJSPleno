@@ -15,6 +15,7 @@ fetch('http://images.contelege.com.br/poi.json')
         console.log('Looks like there was a problem: \n', error);
     });
 
+//  Main Function!
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 6,
@@ -217,6 +218,7 @@ function initMap() {
 
     });
 
+    //positions of markers
     const markers = places.map((place, i) => {
 
         return new google.maps.Marker({
@@ -225,6 +227,8 @@ function initMap() {
         });
 
     });
+
+    // icon
     new MarkerClusterer(map, markers, {
         imagePath:
             "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
