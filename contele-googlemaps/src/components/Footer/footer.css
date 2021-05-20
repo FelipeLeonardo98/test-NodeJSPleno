@@ -3,7 +3,8 @@ footer{
     height: 50px;
     position: absolute; 
     bottom: 0px;
-    background-color: rgba(48, 219, 48, 0.589);
+    /* background-color: rgba(48, 219, 48, 0.589); */
+    background-color: #3c3f4b;;
     color: #ffffff;
     border-radius: 6px;
     text-align: center;
@@ -16,10 +17,10 @@ footer{
 
 a{
     text-decoration: none;
-    color: #ffffff;
+    color: rgb(9, 245, 9);
 }
 
 a:hover{
-    color:  #3c3f4b;
+    color:  #ffffff;
 
 }

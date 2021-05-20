@@ -6,6 +6,7 @@ import useSupercluster from "use-supercluster";
 import './map.css';
 import mapStyles from './mapStyles.js';
 
+
 const options = {
     styles: mapStyles,
 }
@@ -22,7 +23,7 @@ export default function MapGoogle() {
     const url =
         "http://images.contelege.com.br/poi.json";
     const { data, error } = useSwr(url, { fetcher });
-    const places = data && !error ? data.slice(0, 2000) : [];
+    const places = data && !error ? data : [];
     const points = places.map(place => ({
         type: "Feature",
         properties: { cluster: false, where: place.name },
@@ -43,7 +44,7 @@ export default function MapGoogle() {
     });
 
     return (
-        <div style={{ height: "70vh", width: "90%", margin: "40px auto 0 auto", color: "#FFF" }}>
+        <div className="map" style={{ height: "70vh", width: "90%" }}>
             <GoogleMapReact
                 bootstrapURLKeys={{ key: 'AIzaSyDeuPrnXLEdE2_wCuO-_KTPF9mCDW1n8qY' }}
                 defaultCenter={{ lat: -23.574358764461905, lng: -46.58184848218016 }}
@@ -79,7 +80,7 @@ export default function MapGoogle() {
 
                             >
                                 <div
-                                    className="cluster-marker"
+                                    className="clusterCircle"
                                     style={{
                                         width: `${10 + (pointCount / points.length) * 20}px`,
                                         height: `${10 + (pointCount / points.length) * 20}px`
@@ -105,7 +106,7 @@ export default function MapGoogle() {
                             lat={latitude}
                             lng={longitude}
                         >
-                            <button className="crime-marker">
+                            <button className="marker">
                                 <img src="./mapIcon.svg" alt={cluster.properties.where} />
                             </button>
                             {cluster.properties.where}
