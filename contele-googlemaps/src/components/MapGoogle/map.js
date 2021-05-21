@@ -1,26 +1,31 @@
 // imports
 import React, { useState, useRef } from "react";
+// For GoogleMaps
 import useSwr from "swr";
 import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
+// Settings
 import './map.css';
 import mapStyles from './mapStyles.js';
-// import { GOOGLE_MAPS_API_KEY } from "react-dotenv";
 
 
+// Get mapStyles
 const options = {
     styles: mapStyles,
 }
 
+// prepering fetcher
 const fetcher = (...args) => fetch(...args).then(response => response.json());
-
+// prepering Markers
 const Marker = ({ children }) => children;
 
+// Main Function (Component)
 export default function MapGoogle() {
     const mapRef = useRef();
     const [bounds, setBounds] = useState(null);
     const [zoom, setZoom] = useState(8);
 
+    // get ConteleJSON
     const url =
         "http://images.contelege.com.br/poi.json";
     const { data, error } = useSwr(url, { fetcher });
@@ -37,6 +42,7 @@ export default function MapGoogle() {
         }
     }));
 
+    // set Clusters
     const { clusters, supercluster } = useSupercluster({
         points,
         bounds,
@@ -44,6 +50,7 @@ export default function MapGoogle() {
         options: { radius: 75, maxZoom: 20 }
     });
 
+    // View Map
     return (
         <div className="map" style={{ height: "70vh", width: "90%" }}>
             <GoogleMapReact
@@ -55,6 +62,7 @@ export default function MapGoogle() {
                 onGoogleApiLoaded={({ map }) => {
                     mapRef.current = map;
                 }}
+                // adjusting zoom
                 onChange={({ zoom, bounds }) => {
                     setZoom(zoom);
                     setBounds([
@@ -65,6 +73,7 @@ export default function MapGoogle() {
                     ]);
                 }}
             >
+                {/* clusters settings */}
                 {clusters.map(cluster => {
                     const [longitude, latitude] = cluster.geometry.coordinates;
                     const {
@@ -80,6 +89,7 @@ export default function MapGoogle() {
                                 lng={longitude}
 
                             >
+                                {/* cluster ball, differents sizes */}
                                 <div
                                     className="clusterCircle"
                                     style={{
@@ -101,6 +111,7 @@ export default function MapGoogle() {
                         );
                     }
 
+                    // markers settings, image, label and lat/lng
                     return (
                         <Marker
                             key={`place-${cluster.properties.where}`}

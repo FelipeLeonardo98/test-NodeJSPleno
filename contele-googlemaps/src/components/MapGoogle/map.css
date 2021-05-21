@@ -1,11 +1,4 @@
- /* #map{
-    margin: 40px auto 0 auto;
-    width: 55%;
-    height: 45%;
-    border-style: solid;
-    border-radius: 2px solid;
-}  */
-
+ /* Map Styles */
 .map{
   border: 1px solid rgb(230, 230, 230);
   margin: 40px auto 0 auto;
@@ -17,6 +10,7 @@
   box-shadow: 0 0 1em #800080;
 }
 
+/* Clusters Style */
 .clusterCircle {
     color: #fff;
     background: #800080;
@@ -27,6 +21,7 @@
     align-items: center;
   }
   
+  /* Markers Styles */
   .marker {
     background: none;
     border: none;
